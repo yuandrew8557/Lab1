@@ -15,15 +15,16 @@ module register # (parameter N = 8)
   //     1       1      0
   //     0       0     hold
   //     0       1      in   
-  if(clear == 1) begin
-      out <= 0;  // clear == 1, load == x
-  end else begin
-      if(load == 1) begin
-	      out <= in;  // clear == 0, load == 1
-	  end else begin
-	      // clear == 1, load == 0, then do nothing
-	  end
-  end
+  if(clear && !load)
+      out <= 0;
+  else if(clear && load)
+      out <= 0;
+  else if(!clear && !load)
+      out <= out;
+  else if(!clear && load)
+      out <= in;
+  else
+      out <= out; // should never happen
   // What would be the impact of leaving posedge clear out of 
   //  the sensitivity list? 
   // Leaving posedge clear out of the sensitivity list would
