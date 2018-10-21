@@ -2,7 +2,7 @@
 // CSE140L
 module rom(
   input [4:0] addr, 		// pointer
-  output [22:0] data);		// data out
+  output logic [22:0] data);		// data out
     
   logic  [22:0] mem[17:0];	// memory core
     
@@ -30,4 +30,7 @@ module rom(
 
 // fill in the guts
 //   out = mem(addr)
+always_comb begin
+    data = mem[addr];
+end
 endmodule

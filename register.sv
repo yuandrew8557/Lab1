@@ -15,10 +15,10 @@ module register # (parameter N = 8)
   //     1       1      0
   //     0       0     hold
   //     0       1      in   
-  if(clear) begin
+  if(clear == 1) begin
       out <= 0;  // clear == 1, load == x
   end else begin
-      if(load) begin
+      if(load == 1) begin
 	      out <= in;  // clear == 0, load == 1
 	  end else begin
 	      // clear == 1, load == 0, then do nothing

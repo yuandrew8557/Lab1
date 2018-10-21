@@ -3,16 +3,16 @@
 module mux2 #(parameter WIDTH = 8)
              (input  [WIDTH-1:0] d0, d1, 
               input              s, 
-              output [WIDTH-1:0] y);
+              output logic [WIDTH-1:0] y);
 // fill in guts
 // s   y
 // 0   d0
 // 1   d1
-case(s) begin
+always_comb case(s)
     0: y = d0;
 	1: y = d1;
 endcase
-
 endmodule
+
 
 

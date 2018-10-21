@@ -19,7 +19,8 @@ module counter_down	#(parameter dw=8, parameter WIDTH=7)
       result <= WIDTH;
   end else begin
       if(ena) begin 
-          WIDTH <= WIDTH-1;
+          result <= WIDTH-1;
 	  end	  
+  end
   end
 endmodule	

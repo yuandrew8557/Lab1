@@ -18,17 +18,15 @@ module register_hl # (parameter N = 16)
   //    0       1        0       inh              hold
   //    0       1        1       inh              inl
   //    0       0        0       hold             hold
-  if(clear) begin
+  if(clear)
       out <= 0;
-  end else begin
-      if(loadh) begin
-	      out[N-1:N/2] <= inh;  // loadh == 1, loadl == x
-		  if(loadl) begin
-		      out[N/2-1:0] <= inl;  // loadh == 1, loadl == 1
-	      end else begin
-		      // loadh == 1, loadl == 0, do nothing
-		  end
-	  end
-  end  
+  else if(!loadh && loadl)
+      out <= {out[N-1:N/2], inl};
+  else if(loadh && !loadl)
+      out <= {inh, out[N/2-1:0]};
+  else if(loadh && loadl)
+      out <= {inh, inl};
+  else
+      out <= out;
   end	
 endmodule

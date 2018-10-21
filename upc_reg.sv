@@ -15,14 +15,15 @@ module upcreg(
   //     1	        0            0
   //     0	        1		   upc_next
   //     0          0          upc+1
-  if(reset) begin
-      upc <= 0;  // reset == 1, load_incr == x
-  end else begin
-      if(load_incr)
-	      upc <= upc_next;
-	  end else begin
-	      upc <= upc + 1;
-	  end
-  end
+  if(reset && load_incr)
+      upc <= 0;
+  else if(reset && !load_incr)
+      upc <= 0;
+  else if(!reset && load_incr)
+      upc <= upc_next;
+  else if(!reset && !load_incr)
+      upc <= upc+1;
+  else
+      upc <= 17; // should never happen
   end
 endmodule    

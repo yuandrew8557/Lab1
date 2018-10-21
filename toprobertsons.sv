@@ -11,6 +11,6 @@ module toprobertsons(
   robsmult mult(clk, reset, multiplier, multiplicand, product, done);
     
 // alternative: instantiate "fake" signed multipler (used for testing testbench only)
-//   signed_mult mult(product, clk, multiplier, multiplicand);
+//   signed_mult mult(product, clk, multiplier, multiplicand, done);
 
 endmodule

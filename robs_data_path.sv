@@ -34,5 +34,7 @@ module robs_datapath #(parameter WIDTH = 8)
 // fill in guts
 //    zr = 1 if r is even
 //    zq = 1 if q is divisible by 8
+    assign zr = (r % 2 == 0) ? 1 : 0;
+	assign zq = (q % 8 == 0) ? 1 : 0;
 
 endmodule

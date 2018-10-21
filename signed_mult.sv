@@ -4,7 +4,8 @@ module signed_mult (
   output logic signed [15:0] out,
   input			             clk,
   input signed        [ 7:0] a,
-                             b);
+                             b,
+  output logic				 done);
 
   logic signed [ 7:0] a_reg,
           	          b_reg;
@@ -14,9 +15,11 @@ module signed_mult (
   assign mult_out = a_reg * b_reg;
 
   always @ (posedge clk) begin
+    done = 0;
     a_reg <= a;
     b_reg <= b;
     out <= mult_out;
+	done = 1;
   end
 
 endmodule
