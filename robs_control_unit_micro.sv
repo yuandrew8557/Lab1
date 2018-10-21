@@ -24,7 +24,7 @@ module robs_control_unit_micro(
 // output logic
   assign c = uinstr[14:0];
     
-  always_latch// @(upc)
+  always_ff @(upc)
     if(reset)          done = 0;
     else if(upc == 17) done = 1;
     
